@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choujiang.mapper.DrawRecordMapper">
+  <resultMap id="BaseResultMap" type="com.choujiang.domain.DrawRecord">
+    <id column="record_id" jdbcType="INTEGER" property="recordId" />
+    <result column="draw_id" jdbcType="INTEGER" property="drawId" />
+    <result column="record_rand" jdbcType="INTEGER" property="recordRand" />
+    <result column="record_issused" jdbcType="INTEGER" property="recordIssused" />
+    <result column="record_status" jdbcType="INTEGER" property="recordStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    record_id, draw_id, record_rand, record_issused, record_status
+  </sql>
+  <select id="selectByExample" parameterType="com.choujiang.domain.DrawRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cj_draw_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cj_draw_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cj_draw_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.choujiang.domain.DrawRecordExample">
+    delete from cj_draw_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.choujiang.domain.DrawRecord">
+    insert into cj_draw_record (record_id, draw_id, record_rand, 
+      record_issused, record_status)
+    values (#{recordId,jdbcType=INTEGER}, #{drawId,jdbcType=INTEGER}, #{recordRand,jdbcType=INTEGER}, 
+      #{recordIssused,jdbcType=INTEGER}, #{recordStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choujiang.domain.DrawRecord">
+    insert into cj_draw_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="drawId != null">
+        draw_id,
+      </if>
+      <if test="recordRand != null">
+        record_rand,
+      </if>
+      <if test="recordIssused != null">
+        record_issused,
+      </if>
+      <if test="recordStatus != null">
+        record_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="drawId != null">
+        #{drawId,jdbcType=INTEGER},
+      </if>
+      <if test="recordRand != null">
+        #{recordRand,jdbcType=INTEGER},
+      </if>
+      <if test="recordIssused != null">
+        #{recordIssused,jdbcType=INTEGER},
+      </if>
+      <if test="recordStatus != null">
+        #{recordStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.choujiang.domain.DrawRecordExample" resultType="java.lang.Long">
+    select count(*) from cj_draw_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cj_draw_record
+    <set>
+      <if test="record.recordId != null">
+        record_id = #{record.recordId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drawId != null">
+        draw_id = #{record.drawId,jdbcType=INTEGER},
+      </if>
+      <if test="record.recordRand != null">
+        record_rand = #{record.recordRand,jdbcType=INTEGER},
+      </if>
+      <if test="record.recordIssused != null">
+        record_issused = #{record.recordIssused,jdbcType=INTEGER},
+      </if>
+      <if test="record.recordStatus != null">
+        record_status = #{record.recordStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cj_draw_record
+    set record_id = #{record.recordId,jdbcType=INTEGER},
+      draw_id = #{record.drawId,jdbcType=INTEGER},
+      record_rand = #{record.recordRand,jdbcType=INTEGER},
+      record_issused = #{record.recordIssused,jdbcType=INTEGER},
+      record_status = #{record.recordStatus,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choujiang.domain.DrawRecord">
+    update cj_draw_record
+    <set>
+      <if test="drawId != null">
+        draw_id = #{drawId,jdbcType=INTEGER},
+      </if>
+      <if test="recordRand != null">
+        record_rand = #{recordRand,jdbcType=INTEGER},
+      </if>
+      <if test="recordIssused != null">
+        record_issused = #{recordIssused,jdbcType=INTEGER},
+      </if>
+      <if test="recordStatus != null">
+        record_status = #{recordStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choujiang.domain.DrawRecord">
+    update cj_draw_record
+    set draw_id = #{drawId,jdbcType=INTEGER},
+      record_rand = #{recordRand,jdbcType=INTEGER},
+      record_issused = #{recordIssused,jdbcType=INTEGER},
+      record_status = #{recordStatus,jdbcType=INTEGER}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>
