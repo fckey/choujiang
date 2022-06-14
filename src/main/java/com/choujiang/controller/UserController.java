@@ -73,7 +73,7 @@ public class UserController {
       * @return: 
       **/
     @PostMapping("/login")
-    public CommonResp login(@Valid @RequestBody UserLoginReq req, HttpSession session){
+    public CommonResp login( @Valid @RequestBody UserLoginReq req, HttpSession session){
         req.setUserPwd(DigestUtils.md5DigestAsHex(req.getUserPwd().getBytes()));
         CommonResp<UserLoginResp> resp = new CommonResp<>();
         UserLoginResp userLoginResp = userService.login(req);
