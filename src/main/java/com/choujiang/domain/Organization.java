@@ -1,7 +1,7 @@
 package com.choujiang.domain;
 
 public class Organization {
-    private String orgCode;
+    private Integer orgCode;
 
     private String orgName;
 
@@ -9,11 +9,11 @@ public class Organization {
 
     private Integer orgJoined;
 
-    public String getOrgCode() {
+    public Integer getOrgCode() {
         return orgCode;
     }
 
-    public void setOrgCode(String orgCode) {
+    public void setOrgCode(Integer orgCode) {
         this.orgCode = orgCode;
     }
 
