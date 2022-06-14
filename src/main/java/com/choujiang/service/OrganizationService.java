@@ -38,7 +38,7 @@ public class OrganizationService {
         // 看是否有条件
         OrganizationExample.Criteria criteria = organizationExample.createCriteria();
         if(!ObjectUtils.isEmpty(req.getOrgName())){
-            criteria.andOrgNameEqualTo(req.getOrgName());
+            criteria.andOrgNameLike(req.getOrgName());
         }
         // 分页逻辑
         PageHelper.startPage(req.getPage(), req.getSize());

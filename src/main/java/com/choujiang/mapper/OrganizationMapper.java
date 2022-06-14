@@ -27,4 +27,6 @@ public interface OrganizationMapper {
     int updateByPrimaryKeySelective(Organization record);
 
     int updateByPrimaryKey(Organization record);
+
+    int selectByOrganizationQuotas(@Param("id")Integer id);
 }

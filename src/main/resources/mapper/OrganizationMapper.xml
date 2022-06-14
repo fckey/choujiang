@@ -141,7 +141,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <select id="selectByOrganizationQuotas" resultType="java.lang.Integer">
+    select org_quota from cj_organization where org_code = #{id}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update cj_organization
     <set>
       <if test="record.orgCode != null">

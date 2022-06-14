@@ -7,6 +7,8 @@ import com.choujiang.resp.CommonResp;
 import com.choujiang.resp.PageResp;
 import com.choujiang.service.OrganizationService;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/organization")
 public class OrganizationController {
-
+    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     @Resource
     private OrganizationService organizationService;
     /**
