@@ -54,6 +54,7 @@ public class DrawController {
         // 设置内容
         resp.setContent(list);
         // 直接返回
+        if(list == null) resp.setMessage("列表为空");
         return resp;
     }
     /**

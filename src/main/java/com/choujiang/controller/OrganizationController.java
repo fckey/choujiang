@@ -40,6 +40,7 @@ public class OrganizationController {
         CommonResp<PageResp<Organization>> resp = new CommonResp<>();
         PageResp<Organization> list = organizationService.list(req);
         resp.setContent(list);
+        if(list == null) resp.setMessage("用户名为空");
         return resp;
     }
     /**

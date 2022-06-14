@@ -63,6 +63,7 @@ public class UserController {
         CommonResp<PageResp<UserQueryResp>> resp = new CommonResp<>();
         PageResp<UserQueryResp> list = userService.list(req);
         resp.setContent(list);
+        if(list == null) resp.setMessage("列表为空");
         return resp;
     }
     /**

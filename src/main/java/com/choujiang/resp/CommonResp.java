@@ -11,11 +11,16 @@ import lombok.NoArgsConstructor;
  * @createTime 2022/06/13 22:28
  **/
 @Data
-@NoArgsConstructor
 public class CommonResp<T> {
     private boolean success = true;
     private String message;
     private T content;
+    public CommonResp(){
+        this.message = "操作成功";
+    }
+    public CommonResp(String message){
+        this.message = message;
+    }
     public CommonResp(String message, T content) {
         this.message = message;
         this.content = content;
