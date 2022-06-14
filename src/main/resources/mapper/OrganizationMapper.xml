@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choujiang.mapper.OrganizationMapper">
   <resultMap id="BaseResultMap" type="com.choujiang.domain.Organization">
-    <id column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <id column="org_code" jdbcType="INTEGER" property="orgCode" />
     <result column="org_name" jdbcType="VARCHAR" property="orgName" />
     <result column="org_quota" jdbcType="INTEGER" property="orgQuota" />
     <result column="org_joined" jdbcType="INTEGER" property="orgJoined" />
@@ -82,15 +82,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from cj_organization
-    where org_code = #{orgCode,jdbcType=VARCHAR}
+    where org_code = #{orgCode,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cj_organization
-    where org_code = #{orgCode,jdbcType=VARCHAR}
+    where org_code = #{orgCode,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.choujiang.domain.OrganizationExample">
     delete from cj_organization
@@ -101,7 +101,7 @@
   <insert id="insert" parameterType="com.choujiang.domain.Organization">
     insert into cj_organization (org_code, org_name, org_quota, 
       org_joined)
-    values (#{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgQuota,jdbcType=INTEGER}, 
+    values (#{orgCode,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{orgQuota,jdbcType=INTEGER}, 
       #{orgJoined,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.choujiang.domain.Organization">
@@ -122,7 +122,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orgCode != null">
-        #{orgCode,jdbcType=VARCHAR},
+        #{orgCode,jdbcType=INTEGER},
       </if>
       <if test="orgName != null">
         #{orgName,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
     update cj_organization
     <set>
       <if test="record.orgCode != null">
-        org_code = #{record.orgCode,jdbcType=VARCHAR},
+        org_code = #{record.orgCode,jdbcType=INTEGER},
       </if>
       <if test="record.orgName != null">
         org_name = #{record.orgName,jdbcType=VARCHAR},
@@ -163,7 +163,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update cj_organization
-    set org_code = #{record.orgCode,jdbcType=VARCHAR},
+    set org_code = #{record.orgCode,jdbcType=INTEGER},
       org_name = #{record.orgName,jdbcType=VARCHAR},
       org_quota = #{record.orgQuota,jdbcType=INTEGER},
       org_joined = #{record.orgJoined,jdbcType=INTEGER}
@@ -184,13 +184,13 @@
         org_joined = #{orgJoined,jdbcType=INTEGER},
       </if>
     </set>
-    where org_code = #{orgCode,jdbcType=VARCHAR}
+    where org_code = #{orgCode,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.choujiang.domain.Organization">
     update cj_organization
     set org_name = #{orgName,jdbcType=VARCHAR},
       org_quota = #{orgQuota,jdbcType=INTEGER},
       org_joined = #{orgJoined,jdbcType=INTEGER}
-    where org_code = #{orgCode,jdbcType=VARCHAR}
+    where org_code = #{orgCode,jdbcType=INTEGER}
   </update>
 </mapper>

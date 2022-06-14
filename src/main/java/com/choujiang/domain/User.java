@@ -7,7 +7,7 @@ public class User {
 
     private String userPwd;
 
-    private String orgCode;
+    private Integer orgCode;
 
     private Integer userRole;
 
@@ -35,11 +35,11 @@ public class User {
         this.userPwd = userPwd;
     }
 
-    public String getOrgCode() {
+    public Integer getOrgCode() {
         return orgCode;
     }
 
-    public void setOrgCode(String orgCode) {
+    public void setOrgCode(Integer orgCode) {
         this.orgCode = orgCode;
     }
 

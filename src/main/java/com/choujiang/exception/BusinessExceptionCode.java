@@ -9,7 +9,8 @@ package com.choujiang.exception;
  **/
 public enum BusinessExceptionCode {
     USER_LOGIN_NAME_EXIST("登录名已存在"),
-    LOGIN_USER_ERROR("用户名不存在或密码错误");
+    LOGIN_USER_ERROR("用户名不存在或密码错误"),
+    ORGANIZATION_NAME_EXIST("组织名已经存在");
 
     private String desc;
 

@@ -1,5 +1,6 @@
 package com.choujiang.config;
 
+import com.choujiang.interceptor.ActionInterceptor;
 import com.choujiang.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,13 +19,21 @@ import javax.annotation.Resource;
 public class SpringMvcConfig implements WebMvcConfigurer {
     @Resource
     private LoginInterceptor loginInterceptor;
+    @Resource
+    private ActionInterceptor actionInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/user/login/**"
+                        "/user/login/**",
+                        "/user/save"
+                );
+
+        registry.addInterceptor(actionInterceptor)
+                .addPathPatterns(
+
                 );
     }
 }
