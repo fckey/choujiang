@@ -303,6 +303,66 @@ public class OrganizationExample {
             addCriterion("org_quota not between", value1, value2, "orgQuota");
             return (Criteria) this;
         }
+
+        public Criteria andOrgJoinedIsNull() {
+            addCriterion("org_joined is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedIsNotNull() {
+            addCriterion("org_joined is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedEqualTo(Integer value) {
+            addCriterion("org_joined =", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedNotEqualTo(Integer value) {
+            addCriterion("org_joined <>", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedGreaterThan(Integer value) {
+            addCriterion("org_joined >", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("org_joined >=", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedLessThan(Integer value) {
+            addCriterion("org_joined <", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedLessThanOrEqualTo(Integer value) {
+            addCriterion("org_joined <=", value, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedIn(List<Integer> values) {
+            addCriterion("org_joined in", values, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedNotIn(List<Integer> values) {
+            addCriterion("org_joined not in", values, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedBetween(Integer value1, Integer value2) {
+            addCriterion("org_joined between", value1, value2, "orgJoined");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrgJoinedNotBetween(Integer value1, Integer value2) {
+            addCriterion("org_joined not between", value1, value2, "orgJoined");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

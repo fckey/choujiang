@@ -11,8 +11,6 @@ public class User {
 
     private Integer userRole;
 
-    private Integer userStatus;
-
     public Integer getUserId() {
         return userId;
     }
@@ -53,14 +51,6 @@ public class User {
         this.userRole = userRole;
     }
 
-    public Integer getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(Integer userStatus) {
-        this.userStatus = userStatus;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -72,7 +62,6 @@ public class User {
         sb.append(", userPwd=").append(userPwd);
         sb.append(", orgCode=").append(orgCode);
         sb.append(", userRole=").append(userRole);
-        sb.append(", userStatus=").append(userStatus);
         sb.append("]");
         return sb.toString();
     }

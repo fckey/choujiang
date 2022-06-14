@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 14/06/2022 08:25:10
+ Date: 14/06/2022 09:23:46
 */
 
 SET NAMES utf8mb4;
@@ -55,17 +55,18 @@ CREATE TABLE `cj_draw_record`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `cj_organization`;
 CREATE TABLE `cj_organization`  (
-  `org_code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '主键，单位代码，键表示唯一',
+  `org_code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '主键，单位代码，键表示唯一',
   `org_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '单位名称',
   `org_quota` int UNSIGNED NULL DEFAULT 0 COMMENT '单位配额',
+  `org_joined` int NULL DEFAULT NULL COMMENT '0 代表没有参加， 1 代表参加',
   PRIMARY KEY (`org_code`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cj_organization
 -- ----------------------------
-INSERT INTO `cj_organization` VALUES ('1', 'xx开发公司', NULL);
-INSERT INTO `cj_organization` VALUES ('2', 'yy开发公司', NULL);
+INSERT INTO `cj_organization` VALUES ('1', 'xx开发公司', NULL, NULL);
+INSERT INTO `cj_organization` VALUES ('2', 'yy开发公司', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for cj_user
@@ -77,16 +78,15 @@ CREATE TABLE `cj_user`  (
   `user_pwd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户密码',
   `org_code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '单位代码，表示该用户所属的单位',
   `user_role` int NULL DEFAULT NULL COMMENT '用户角色 | 0 ，表示普通用户| 1 表示管理员',
-  `user_status` int NULL DEFAULT 0 COMMENT '表示该用户是否有权限抽奖 | 0 表示没有 ， 1 表示有权限',
   PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cj_user
 -- ----------------------------
-INSERT INTO `cj_user` VALUES (1, 'zhangsan', 'zhangsan123', '1', 1, 0);
-INSERT INTO `cj_user` VALUES (2, 'lisi', 'lisi123', '2', 1, 0);
-INSERT INTO `cj_user` VALUES (3, 'wangwu', 'wangwu123', '0', 0, 0);
+INSERT INTO `cj_user` VALUES (1, 'zhangsan', 'zhangsan123', '1', 1);
+INSERT INTO `cj_user` VALUES (2, 'lisi', 'lisi123', '2', 1);
+INSERT INTO `cj_user` VALUES (3, 'wangwu', 'wangwu123', '0', 0);
 
 -- ----------------------------
 -- Table structure for cj_user_record

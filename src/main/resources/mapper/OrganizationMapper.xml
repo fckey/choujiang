@@ -5,6 +5,7 @@
     <id column="org_code" jdbcType="VARCHAR" property="orgCode" />
     <result column="org_name" jdbcType="VARCHAR" property="orgName" />
     <result column="org_quota" jdbcType="INTEGER" property="orgQuota" />
+    <result column="org_joined" jdbcType="INTEGER" property="orgJoined" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    org_code, org_name, org_quota
+    org_code, org_name, org_quota, org_joined
   </sql>
   <select id="selectByExample" parameterType="com.choujiang.domain.OrganizationExample" resultMap="BaseResultMap">
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.choujiang.domain.Organization">
-    insert into cj_organization (org_code, org_name, org_quota
-      )
-    values (#{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgQuota,jdbcType=INTEGER}
-      )
+    insert into cj_organization (org_code, org_name, org_quota, 
+      org_joined)
+    values (#{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgQuota,jdbcType=INTEGER}, 
+      #{orgJoined,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.choujiang.domain.Organization">
     insert into cj_organization
@@ -115,6 +116,9 @@
       <if test="orgQuota != null">
         org_quota,
       </if>
+      <if test="orgJoined != null">
+        org_joined,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orgCode != null">
@@ -125,6 +129,9 @@
       </if>
       <if test="orgQuota != null">
         #{orgQuota,jdbcType=INTEGER},
+      </if>
+      <if test="orgJoined != null">
+        #{orgJoined,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.orgQuota != null">
         org_quota = #{record.orgQuota,jdbcType=INTEGER},
       </if>
+      <if test="record.orgJoined != null">
+        org_joined = #{record.orgJoined,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update cj_organization
     set org_code = #{record.orgCode,jdbcType=VARCHAR},
       org_name = #{record.orgName,jdbcType=VARCHAR},
-      org_quota = #{record.orgQuota,jdbcType=INTEGER}
+      org_quota = #{record.orgQuota,jdbcType=INTEGER},
+      org_joined = #{record.orgJoined,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="orgQuota != null">
         org_quota = #{orgQuota,jdbcType=INTEGER},
       </if>
+      <if test="orgJoined != null">
+        org_joined = #{orgJoined,jdbcType=INTEGER},
+      </if>
     </set>
     where org_code = #{orgCode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.choujiang.domain.Organization">
     update cj_organization
     set org_name = #{orgName,jdbcType=VARCHAR},
-      org_quota = #{orgQuota,jdbcType=INTEGER}
+      org_quota = #{orgQuota,jdbcType=INTEGER},
+      org_joined = #{orgJoined,jdbcType=INTEGER}
     where org_code = #{orgCode,jdbcType=VARCHAR}
   </update>
 </mapper>

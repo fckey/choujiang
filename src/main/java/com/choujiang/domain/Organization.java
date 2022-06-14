@@ -7,6 +7,8 @@ public class Organization {
 
     private Integer orgQuota;
 
+    private Integer orgJoined;
+
     public String getOrgCode() {
         return orgCode;
     }
@@ -31,6 +33,14 @@ public class Organization {
         this.orgQuota = orgQuota;
     }
 
+    public Integer getOrgJoined() {
+        return orgJoined;
+    }
+
+    public void setOrgJoined(Integer orgJoined) {
+        this.orgJoined = orgJoined;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -40,6 +50,7 @@ public class Organization {
         sb.append(", orgCode=").append(orgCode);
         sb.append(", orgName=").append(orgName);
         sb.append(", orgQuota=").append(orgQuota);
+        sb.append(", orgJoined=").append(orgJoined);
         sb.append("]");
         return sb.toString();
     }
