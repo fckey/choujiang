@@ -1,10 +1,11 @@
 package com.choujiang.service;
 
-import com.choujiang.domain.*;
+import com.choujiang.domain.Draw;
+import com.choujiang.domain.DrawExample;
+import com.choujiang.domain.DrawRecord;
 import com.choujiang.mapper.DrawMapper;
 import com.choujiang.mapper.DrawRecordMapper;
 import com.choujiang.mapper.OrganizationMapper;
-import com.choujiang.mapper.UserRecordMapper;
 import com.choujiang.req.DrawQueryReq;
 import com.choujiang.req.DrawSaveReq;
 import com.choujiang.resp.DrawQueryResp;
@@ -41,8 +42,6 @@ public class DrawService {
     @Resource
     private DrawRecordMapper drawRecordMapper;
 
-    @Resource
-    private UserRecordMapper userRecordMapper;
 
     @Resource
     private SnowFlake snowFlake;
@@ -59,6 +58,10 @@ public class DrawService {
                 int quotas = getQuotas(req.getOrgs());
                 // 生成签
                 generatorDrawRecords(quotas, req.getDrawLuck(), req.getDrawId());
+                // 设置到对象中
+                draw.setDrawNum(quotas);
+                // 插入数据
+                drawMapper.insert(draw);
             }
         } else{
             // 更新
