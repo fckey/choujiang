@@ -13,4 +13,6 @@ import lombok.Data;
 public class DrawQueryResp {
     private Integer drawId;
     private String drawDesc;
+    private Integer drawNum;
+    private Integer drawLuck;
 }

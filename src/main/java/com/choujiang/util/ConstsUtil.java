@@ -10,4 +10,6 @@ package com.choujiang.util;
 public final class ConstsUtil {
     public static final Integer DRAW_RECORD_LOCKED = 1;
     public static final Integer DRAW_RECORD_FIX = 2;
+    public static final Integer ADMIN_IDENTIFIER = 0;
+    public static final Integer USER_IDENTIFIER = 1;
 }

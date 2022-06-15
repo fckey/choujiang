@@ -1,8 +1,6 @@
 package com.choujiang.controller;
 
-import com.choujiang.domain.DrawRecord;
 import com.choujiang.req.DrawQueryReq;
-import com.choujiang.req.DrawRecordReq;
 import com.choujiang.req.DrawSaveReq;
 import com.choujiang.resp.CommonResp;
 import com.choujiang.resp.DrawQueryResp;
@@ -10,7 +8,10 @@ import com.choujiang.resp.PageResp;
 import com.choujiang.service.DrawService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -55,22 +56,6 @@ public class DrawController {
         resp.setContent(list);
         // 直接返回
         if(list == null) resp.setMessage("列表为空");
-        return resp;
-    }
-    /**
-      * @author: fangshaolei
-      * @description: 用户抽取的时候，抽取的单一的签， drawId表示参加的是哪一次活动,
-     * 表示生成或者是取消签或者是确认签
-      * @Date: 2022/6/14 16:47
-      * @params:
-      * @return:
-      **/
-
-    @GetMapping("/randomDraw")
-    public CommonResp randomSingletonDrawGenerator(DrawRecordReq req){
-        CommonResp resp = new CommonResp();
-        // 生成一个单一的随机签
-        DrawRecord drawRecord = drawService.randomSingletonDrawGenerator(req);
         return resp;
     }
 }
