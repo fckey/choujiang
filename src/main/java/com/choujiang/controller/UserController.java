@@ -86,6 +86,7 @@ public class UserController {
         // 把userloginresp放入到session中
         session.setAttribute(token, userLoginResp);
         session.setMaxInactiveInterval(60*30);
+        LOG.info("session,{}", session);
         resp.setContent(userLoginResp);
         return resp;
     }

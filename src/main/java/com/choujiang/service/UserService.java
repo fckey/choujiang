@@ -81,8 +81,8 @@ public class UserService {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         // 用户名称
-        if(!ObjectUtils.isEmpty(req.getUsername())){
-            criteria.andUserNameLike(req.getUsername());
+        if(!ObjectUtils.isEmpty(req.getUserName())){
+            criteria.andUserNameLike("%" + req.getUserName() + "%");
         }
         // 分页逻辑
         PageHelper.startPage(req.getPage(), req.getSize());

@@ -1,9 +1,6 @@
 package com.choujiang.interceptor;
 
-import com.alibaba.fastjson.JSON;
-import com.choujiang.domain.User;
 import com.choujiang.resp.UserLoginResp;
-import com.choujiang.resp.UserQueryResp;
 import com.choujiang.util.LoginUserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +41,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
         UserLoginResp userLoginResp = (UserLoginResp) httpSession.getAttribute(token);
+        LOG.info("httpsession,{}", httpSession);
         if(userLoginResp == null){
             LOG.warn( "token无效，请求被拦截" );
             response.setStatus(HttpStatus.UNAUTHORIZED.value());

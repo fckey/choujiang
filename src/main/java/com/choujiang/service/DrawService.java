@@ -190,7 +190,7 @@ public class DrawService {
     public PageResp<DrawQueryResp> list(DrawQueryReq req) {
         DrawExample drawExample = new DrawExample();
         DrawExample.Criteria criteria  = drawExample.createCriteria();
-        if(ObjectUtils.isEmpty(req.getDrawDesc())) criteria.andDrawDescLike(req.getDrawDesc());
+        if(ObjectUtils.isEmpty(req.getDrawDesc())) criteria.andDrawDescLike("%" + req.getDrawDesc() + "%");
         // 设置分页逻辑
         PageHelper.startPage(req.getPage(), req.getSize());
         List<Draw> draws = drawMapper.selectByExample(drawExample);
