@@ -98,7 +98,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.choujiang.domain.Draw">
+  <insert id="insert" parameterType="com.choujiang.domain.Draw" useGeneratedKeys="true" keyProperty="drawId">
     insert into cj_draw (draw_id, draw_desc, draw_num, 
       draw_luck)
     values (#{drawId,jdbcType=INTEGER}, #{drawDesc,jdbcType=VARCHAR}, #{drawNum,jdbcType=INTEGER}, 

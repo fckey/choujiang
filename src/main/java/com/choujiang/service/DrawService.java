@@ -56,12 +56,12 @@ public class DrawService {
             if (ObjectUtils.isEmpty(drawdb)) {
                 // 获得所有企业的配额
                 int quotas = getQuotas(req.getOrgs());
-                // 生成签
-                generatorDrawRecords(quotas, req.getDrawLuck(), req.getDrawId());
                 // 设置到对象中
                 draw.setDrawNum(quotas);
-                // 插入数据
+                // 插入数据,使用了组件自增的策略，之后会获取到数据
                 drawMapper.insert(draw);
+                // 生成签
+                generatorDrawRecords(quotas, req.getDrawLuck(), draw.getDrawId());
             }
         } else{
             // 更新
