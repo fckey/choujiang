@@ -29,13 +29,13 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/user/login/**"
-//                        "/user/save"
+                        "/user/login/**",
+                        "/user/save"
                 );
 
         registry.addInterceptor(actionInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/login/**");
+                .excludePathPatterns("/user/login/**","/user/save");
     }
 
 
