@@ -9,6 +9,8 @@ public class Draw {
 
     private Integer drawLuck;
 
+    private Integer drawValid;
+
     public Integer getDrawId() {
         return drawId;
     }
@@ -41,6 +43,14 @@ public class Draw {
         this.drawLuck = drawLuck;
     }
 
+    public Integer getDrawValid() {
+        return drawValid;
+    }
+
+    public void setDrawValid(Integer drawValid) {
+        this.drawValid = drawValid;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -51,6 +61,7 @@ public class Draw {
         sb.append(", drawDesc=").append(drawDesc);
         sb.append(", drawNum=").append(drawNum);
         sb.append(", drawLuck=").append(drawLuck);
+        sb.append(", drawValid=").append(drawValid);
         sb.append("]");
         return sb.toString();
     }

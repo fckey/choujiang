@@ -6,6 +6,7 @@
     <result column="draw_desc" jdbcType="VARCHAR" property="drawDesc" />
     <result column="draw_num" jdbcType="INTEGER" property="drawNum" />
     <result column="draw_luck" jdbcType="INTEGER" property="drawLuck" />
+    <result column="draw_valid" jdbcType="INTEGER" property="drawValid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    draw_id, draw_desc, draw_num, draw_luck
+    draw_id, draw_desc, draw_num, draw_luck, draw_valid
   </sql>
   <select id="selectByExample" parameterType="com.choujiang.domain.DrawExample" resultMap="BaseResultMap">
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.choujiang.domain.Draw" useGeneratedKeys="true" keyProperty="drawId">
     insert into cj_draw (draw_id, draw_desc, draw_num, 
-      draw_luck)
+      draw_luck, draw_valid)
     values (#{drawId,jdbcType=INTEGER}, #{drawDesc,jdbcType=VARCHAR}, #{drawNum,jdbcType=INTEGER}, 
-      #{drawLuck,jdbcType=INTEGER})
+      #{drawLuck,jdbcType=INTEGER}, #{drawValid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.choujiang.domain.Draw">
     insert into cj_draw
@@ -119,6 +120,9 @@
       <if test="drawLuck != null">
         draw_luck,
       </if>
+      <if test="drawValid != null">
+        draw_valid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="drawId != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="drawLuck != null">
         #{drawLuck,jdbcType=INTEGER},
+      </if>
+      <if test="drawValid != null">
+        #{drawValid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.drawLuck != null">
         draw_luck = #{record.drawLuck,jdbcType=INTEGER},
       </if>
+      <if test="record.drawValid != null">
+        draw_valid = #{record.drawValid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set draw_id = #{record.drawId,jdbcType=INTEGER},
       draw_desc = #{record.drawDesc,jdbcType=VARCHAR},
       draw_num = #{record.drawNum,jdbcType=INTEGER},
-      draw_luck = #{record.drawLuck,jdbcType=INTEGER}
+      draw_luck = #{record.drawLuck,jdbcType=INTEGER},
+      draw_valid = #{record.drawValid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="drawLuck != null">
         draw_luck = #{drawLuck,jdbcType=INTEGER},
       </if>
+      <if test="drawValid != null">
+        draw_valid = #{drawValid,jdbcType=INTEGER},
+      </if>
     </set>
     where draw_id = #{drawId,jdbcType=INTEGER}
   </update>
@@ -190,7 +204,8 @@
     update cj_draw
     set draw_desc = #{drawDesc,jdbcType=VARCHAR},
       draw_num = #{drawNum,jdbcType=INTEGER},
-      draw_luck = #{drawLuck,jdbcType=INTEGER}
+      draw_luck = #{drawLuck,jdbcType=INTEGER},
+      draw_valid = #{drawValid,jdbcType=INTEGER}
     where draw_id = #{drawId,jdbcType=INTEGER}
   </update>
 </mapper>

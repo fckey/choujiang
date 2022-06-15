@@ -1,5 +1,6 @@
 package com.choujiang.controller;
 
+import com.choujiang.domain.Draw;
 import com.choujiang.req.DrawQueryReq;
 import com.choujiang.req.DrawSaveReq;
 import com.choujiang.resp.CommonResp;
@@ -53,6 +54,20 @@ public class DrawController {
         resp.setContent(list);
         // 直接返回
         if(list == null) resp.setMessage("列表为空");
+        return resp;
+    }
+    /**
+      * @author: fangshaolei
+      * @description: 
+      * @Date: 2022/6/15 21:43
+      * @params: 
+      * @return: 
+      **/
+    @GetMapping("/validDraw")
+    public CommonResp queryValidDraw(){
+        CommonResp resp = new CommonResp();
+        Draw draw = drawService.queryValidDraw();
+        resp.setContent(draw);
         return resp;
     }
 }

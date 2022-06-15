@@ -353,6 +353,66 @@ public class DrawExample {
             addCriterion("draw_luck not between", value1, value2, "drawLuck");
             return (Criteria) this;
         }
+
+        public Criteria andDrawValidIsNull() {
+            addCriterion("draw_valid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidIsNotNull() {
+            addCriterion("draw_valid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidEqualTo(Integer value) {
+            addCriterion("draw_valid =", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidNotEqualTo(Integer value) {
+            addCriterion("draw_valid <>", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidGreaterThan(Integer value) {
+            addCriterion("draw_valid >", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("draw_valid >=", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidLessThan(Integer value) {
+            addCriterion("draw_valid <", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidLessThanOrEqualTo(Integer value) {
+            addCriterion("draw_valid <=", value, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidIn(List<Integer> values) {
+            addCriterion("draw_valid in", values, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidNotIn(List<Integer> values) {
+            addCriterion("draw_valid not in", values, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidBetween(Integer value1, Integer value2) {
+            addCriterion("draw_valid between", value1, value2, "drawValid");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawValidNotBetween(Integer value1, Integer value2) {
+            addCriterion("draw_valid not between", value1, value2, "drawValid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -40,8 +40,8 @@
                              targetPackage="com.choujiang.mapper"
                              type="XMLMAPPER"/>
 
-<!--        <table tableName="cj_draw" domainObjectName="Draw"/>-->
-        <table tableName="cj_draw_record" domainObjectName="DrawRecord"/>
+        <table tableName="cj_draw" domainObjectName="Draw"/>
+<!--        <table tableName="cj_draw_record" domainObjectName="DrawRecord"/>-->
 <!--        <table tableName="cj_organization" domainObjectName="Organization"/>-->
 <!--        <table tableName="cj_user" domainObjectName="User"/>-->
 <!--        <table tableName="cj_user_record" domainObjectName="UserRecord"/>-->

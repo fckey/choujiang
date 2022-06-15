@@ -10,6 +10,7 @@ import com.choujiang.req.DrawQueryReq;
 import com.choujiang.req.DrawSaveReq;
 import com.choujiang.resp.DrawQueryResp;
 import com.choujiang.resp.PageResp;
+import com.choujiang.util.ConstsUtil;
 import com.choujiang.util.CopyUtil;
 import com.choujiang.util.SnowFlake;
 import com.github.pagehelper.PageHelper;
@@ -56,10 +57,12 @@ public class DrawService {
             if (ObjectUtils.isEmpty(drawdb)) {
                 // 获得所有企业的配额
                 int quotas = getQuotas(req.getOrgs());
+                // 先把其他所有的活动都设置为无效
+                setAllDrawInValid();
                 // 设置到对象中
                 draw.setDrawNum(quotas);
                 // 插入数据,使用了组件自增的策略，之后会获取到数据
-                drawMapper.insert(draw);
+                drawMapper.updateByPrimaryKeySelective(draw);
                 // 生成签
                 generatorDrawRecords(quotas, req.getDrawLuck(), draw.getDrawId());
             }
@@ -71,6 +74,25 @@ public class DrawService {
             drawMapper.updateByPrimaryKeySelective(draw);
         }
     }
+    /**
+      * @author: fangshaolei
+      * @description: 设置所有的字段都失效
+      * @Date: 2022/6/15 21:40
+      * @params:
+      * @return:
+      **/
+    public void setAllDrawInValid(){
+        DrawExample drawExample = new DrawExample();
+        DrawExample.Criteria criteria = drawExample.createCriteria();
+        criteria.andDrawValidEqualTo(ConstsUtil.DRAW_VALID);
+
+        List<Draw> draws = drawMapper.selectByExample(drawExample);
+        for (Draw draw : draws) {
+            draw.setDrawValid(0);
+            drawMapper.insert(draw);
+        }
+    }
+
     /**
       * @author: fangshaolei
       * @description:  按照描述来查询该数据表中的字段
@@ -150,5 +172,12 @@ public class DrawService {
     }
 
 
-
+    public Draw queryValidDraw() {
+        DrawExample drawExample = new DrawExample();
+        DrawExample.Criteria criteria = drawExample.createCriteria();
+        // 查询有效签
+        criteria.andDrawValidEqualTo(ConstsUtil.DRAW_VALID);
+        List<Draw> draws = drawMapper.selectByExample(drawExample);
+        return draws.get(0);
+    }
 }
