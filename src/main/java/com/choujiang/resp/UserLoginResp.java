@@ -14,4 +14,5 @@ public class UserLoginResp {
     private Integer userId;
     private String userName;
     private String token;
+    private Integer userRole;
 }
