@@ -114,7 +114,7 @@ public class DrawService {
             int rand = (int)(snowFlake.nextId() % 2147483647);
             drawRecord.setRecordRand(rand);
             // 标记固定数量的有效签
-            if( drawLuck-- >= 0) drawRecord.setRecordStatus(1);
+            if( drawLuck-- > 0) drawRecord.setRecordStatus(1);
             // 插入数据
             drawRecordMapper.insert(drawRecord);
         }

@@ -8,10 +8,7 @@ import com.choujiang.resp.PageResp;
 import com.choujiang.service.DrawService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -36,7 +33,7 @@ public class DrawController {
       * @return: 
       **/
     @PostMapping("/save")
-    public CommonResp save(DrawSaveReq req){
+    public CommonResp save(@RequestBody DrawSaveReq req){
         CommonResp resp = new CommonResp();
         drawService.save(req);
         return resp;
