@@ -62,4 +62,19 @@ public class DrawRecordController {
         return resp;
     }
 
+    /**
+      * @author: fangshaolei
+      * @description: 重置签的状态，带上签的id
+      * @Date: 2022/6/16 8:33
+      * @params:
+      * @return:
+      **/
+    @GetMapping("/reset")
+    public CommonResp resetDrawRecord(DrawRecordReq req) {
+        CommonResp resp = new CommonResp();
+        drawRecordService.resetDrawRecord(req);
+        return resp;
+    }
+
+
 }

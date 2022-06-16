@@ -144,4 +144,12 @@ public class DrawRecordService {
         pageResp.setList(list);
         return pageResp;
     }
+
+
+    public void resetDrawRecord(DrawRecordReq req) {
+        UserLoginResp user = LoginUserContext.getUser();
+        DrawRecord record = CopyUtil.copy(req, DrawRecord.class);
+        record.setRecordIssused(0);
+        drawRecordMapper.updateByPrimaryKeySelective(record);
+    }
 }
