@@ -84,11 +84,13 @@ public class DrawService {
     public void setAllDrawInValid(){
         DrawExample drawExample = new DrawExample();
         DrawExample.Criteria criteria = drawExample.createCriteria();
+        // 查询所有有效的
         criteria.andDrawValidEqualTo(ConstsUtil.DRAW_VALID);
 
         List<Draw> draws = drawMapper.selectByExample(drawExample);
         for (Draw draw : draws) {
-            draw.setDrawValid(0);
+            // 都设置成是无效的
+            draw.setDrawValid(ConstsUtil.DRAW_INVALID);
             drawMapper.insert(draw);
         }
     }

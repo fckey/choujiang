@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.choujiang.mapper.UserMapper;
 import com.choujiang.resp.CommonResp;
 import com.choujiang.resp.UserLoginResp;
+import com.choujiang.util.ConstsUtil;
 import com.choujiang.util.LoginUserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class ActionInterceptor implements HandlerInterceptor {
         Integer userId = userLoginResp.getUserId();
         Integer userRole = userMapper.selectByPrimaryKey(userId).getUserRole();
         // 代表管理员
-        if(userRole == 0){
+        if(userRole == ConstsUtil.ADMIN_IDENTIFIER){
             return true;
         }
         LOG.info("操作被拦截");

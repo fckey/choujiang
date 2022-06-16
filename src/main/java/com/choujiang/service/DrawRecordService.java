@@ -7,6 +7,7 @@ import com.choujiang.domain.UserRecordExample;
 import com.choujiang.exception.BusinessException;
 import com.choujiang.exception.BusinessExceptionCode;
 import com.choujiang.mapper.DrawRecordMapper;
+import com.choujiang.mapper.UserMapper;
 import com.choujiang.mapper.UserRecordMapper;
 import com.choujiang.req.DrawRecordQueryReq;
 import com.choujiang.req.DrawRecordReq;
@@ -39,6 +40,8 @@ public class DrawRecordService {
     private UserRecordMapper userRecordMapper;
     @Resource
     private DrawRecordMapper drawRecordMapper;
+    @Resource
+    private UserMapper  userMapper;
 
     /**
       * @author: fangshaolei
@@ -49,6 +52,13 @@ public class DrawRecordService {
       **/
     public synchronized DrawRecord randomSingletonDrawGenerator(DrawRecordReq req) {
         DrawRecord drawRecord = null;
+        UserLoginResp user = LoginUserContext.getUser();
+        // 先判断当前用户对应的公司是否有配额
+        // 查出用户公司的配额
+        int n = userMapper.selectQutosForUser(user.getUserId());
+        DrawRecordQueryReq drawRecordQueryReq = CopyUtil.copy(req, DrawRecordQueryReq.class);
+        int total = (int) list(drawRecordQueryReq).getTotal();
+        if(total >= n) throw new BusinessException(BusinessExceptionCode.DRAW_RECORD_UNNUMBER);
         // 查看对应的状态，锁定的状态就是理解为签已经被展示的状态
         if(req.getStatus().equals(ConstsUtil.DRAW_RECORD_LOCKED)){
             // 查出所有没有被抽的签
@@ -80,11 +90,10 @@ public class DrawRecordService {
             record.setRecordIssused(ConstsUtil.DRAW_RECORD_FIX);
             drawRecordMapper.updateByPrimaryKeySelective(record);
             // ToDo. 将数据写到中间表
-            UserLoginResp user = LoginUserContext.getUser();
             UserRecord userRecord = new UserRecord();
             userRecord.setUserId(user.getUserId());
             userRecord.setDrawId(req.getDrawId());
-            userRecord.setRecordId(req.getDrawId());
+            userRecord.setRecordId(req.getRecordId());
             userRecord.setDate(new Date());
             userRecordMapper.insert(userRecord);
         }else{
